@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>2025-1 연합예배</title>
+</head>
+
+<body>
+    <h2>예배 참여자 정보 제출</h2>
+    <form id="entryForm">
+
+    <label>
+        학번(입학년도) :
+        <select name="year" required>
+          <option value="2025">2025</option>
+          <option value="2024">2024</option>
+          <option value="2023">2023</option>
+          <option value="2022">2022</option>
+          <option value="2021">2021</option>
+          <option value="2020">2020</option>
+          <option value="2019">2019</option>
+          <option value="2018">2018 이전</option>
+        </select>
+      </label>
+      <br>
+      <label>
+        소속 동아리 : 
+        <select name="club" required>
+          <option value="NaN">소속 없음</option>
+          <option value="CUSCM">CUSCM</option>
+          <option value="CCC">CCC</option>
+          <option value="Navi">네비게이토</option>
+          <option value="ESF">ESF</option>
+          <option value="IVF">IVF</option>
+          <option value="JOY">JOY</option>
+          <option value="">약학대</option>
+          <option value="">의과대</option>
+        </select>
+      </label>
+        <button type="submit">제출</button>
+    </form>
+
+    <script>
+        document.getElementById("entryForm").addEventListener("submit", async function (e) {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            const data = {
+                year: formData.get("year"),
+                college: formData.get("college")
+            };
+
+            await fetch("https://script.google.com/macros/s/AKfycbwo0TXkNmuHDFmpiGAZdx1tYhG9l_Hm1qo1A3w4d29Gi7Kpw8hde5gksPnGD9pVDPjz/exec", {
+                method: "POST",
+                body: JSON.stringify(data)
+            });
+
+            alert("제출되었습니다!");
+        });
+    </script>
+</body>
+
+</html>
